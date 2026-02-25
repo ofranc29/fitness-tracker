@@ -19,7 +19,8 @@
 <script>
 import axios from 'axios';
 
-const API_URL = "https://fitness-tracker-r7sk.onrender.com"
+const { VITE_API_URL } = import.meta.env
+console.log(VITE_API_URL)
 
 export default {
   data() {
@@ -70,12 +71,12 @@ export default {
         score: this.score
       };
 
-        await axios.post(`${API_URL}/api/entry`, entry);
+      await axios.post(`${VITE_API_URL}/api/entry`, entry);
       this.fetchEntries();
     },
 
     async fetchEntries() {
-        const res = await axios.get(`${API_URL}/api/entries`);
+      const res = await axios.get(`${VITE_API_URL}/api/entries`);
       this.entries = res.data;
     }
   },
