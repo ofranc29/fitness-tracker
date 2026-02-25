@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# SQLite database
+*.db
+*.sqlite
+
+# Build output (Vue)
+client/dist/
+
+# Vite cache
+client/node_modules/.vite
+
+# Optional: lock files (keep if you want reproducible installs)
+# package-lock.json
