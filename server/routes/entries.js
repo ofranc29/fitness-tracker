@@ -9,7 +9,11 @@ router.post('/entry', (req, res) => {
 
     const stmt = db.prepare(`
         INSERT INTO entries (date, data, score)
-        VALUES (?, ?, ?)   
+        VALUES (?, ?, ?)
+            ON CONFLICT(date)
+            DO UPDATE SET
+            data = excluded.data,
+            score = excluded.score 
     `);
 
     const result = stmt.run(
@@ -35,6 +39,11 @@ router.get('/entries', (req, res) => {
     }));
 
     res.json(entries);
+});
+
+router.delete('/reset', (req, res) => {
+    db.prepare(`DELETE FROM entries`).run();
+    res.json({ message: 'Database cleared' });
 });
 
 export default router;

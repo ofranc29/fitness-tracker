@@ -6,7 +6,7 @@ const db = new Database('fitness.db');
 db.prepare(`
     CREATE TABLE IF NOT EXISTS entries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date TEXT,
+        date TEXT UNIQUE,
         data TEXT,
         score INTEGER
     )    
