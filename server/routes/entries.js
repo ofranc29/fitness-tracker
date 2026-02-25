@@ -10,8 +10,7 @@ router.post('/entry', (req, res) => {
     const stmt = db.prepare(`
         INSERT INTO entries (date, data, score)
         VALUES (?, ?, ?)
-            ON CONFLICT(date)
-            DO UPDATE SET
+            ON CONFLICT(date) DO UPDATE SET
             data = excluded.data,
             score = excluded.score 
     `);
