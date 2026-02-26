@@ -64,14 +64,20 @@ export default {
     },
 
     async saveEntry() {
-      const entry = {
-        date: new Date().toISOString().split('T')[0],
-        data: this.todaysTasks,
-        score: this.score
-      };
+      try {
+        const today = new Date().toISOString().split('T')[0];
 
-      await axios.post(`${VITE_API_URL}/api/entry`, entry);
-      this.fetchEntries();
+        const response = await axios.post(`${VITE_API_URL}/api/entry`, {
+          date: today,
+          data: this.todaysTasks,
+          score: this.score
+        });
+
+        console.log('Saved:', response.data);
+
+      } catch (error) {
+        console.error('Error saving entry:', error.response?.data || error.message);
+      }
     },
 
     async fetchEntries() {
