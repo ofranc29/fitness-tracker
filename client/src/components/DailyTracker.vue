@@ -65,7 +65,7 @@ export default {
 
     async saveEntry() {
       try {
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Date().toLocaleDateString().split('T')[0];
 
         const response = await axios.post(`${VITE_API_URL}/api/entry`, {
           date: today,
